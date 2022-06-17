@@ -2,7 +2,7 @@ const client = require('./client');
 const bcrypt = require('bcrypt');
 
 // database functions
-client.connect();
+
 // user functions
 async function createUser({ username, password }) {
   const SALT_COUNT = 10;
