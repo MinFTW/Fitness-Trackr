@@ -60,7 +60,7 @@ async function createTables() {
         count INTEGER,
         UNIQUE("routineId", "activityId")
       );
-    `)
+    `);
 
     console.log('Finished building tables!');
   } catch (error) {

@@ -55,7 +55,7 @@ async function getActivityByName(name) {
   }
 }
 
-async function attachActivitiesToRoutines(routines) {}
+// async function attachActivitiesToRoutines(routines) {}
 // select and return an array of all activities
 
 async function createActivity({ name, description }) {
@@ -119,15 +119,15 @@ async function updateActivity({ id, ...fields }) {
     throw error;
   }
 }
-
 // don't try to update the id
 // do update the name and description
 // return the updated activity
+
 module.exports = {
   getAllActivities,
   getActivityById,
   getActivityByName,
-  attachActivitiesToRoutines,
+  // attachActivitiesToRoutines,
   createActivity,
   updateActivity,
 };
