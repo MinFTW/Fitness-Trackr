@@ -1,9 +1,6 @@
 const client = require('./client');
 const bcrypt = require('bcrypt');
 
-// database functions
-
-// user functions
 async function createUser({ username, password }) {
   const SALT_COUNT = 10;
   const hashedPassword = await bcrypt.hash(password, SALT_COUNT);
@@ -20,7 +17,7 @@ async function createUser({ username, password }) {
     `,
       [username, hashedPassword]
     );
-    delete user.password;
+    if (user) delete user.password;
 
     return user;
   } catch (error) {
@@ -35,7 +32,6 @@ async function getUser({ username, password }) {
   const passwordsMatch = await bcrypt.compare(password, hashedPassword);
 
   if (passwordsMatch) {
-    // return the user object (without the password)
     try {
       const {
         rows: [user],

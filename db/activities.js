@@ -1,6 +1,5 @@
 const client = require('./client');
 
-// database functions
 async function getAllActivities() {
   try {
     const { rows: activities } = await client.query(`
@@ -55,8 +54,23 @@ async function getActivityByName(name) {
   }
 }
 
-// async function attachActivitiesToRoutines(routines) {}
-// select and return an array of all activities
+// eslint-disable-next-line no-unused-vars
+async function attachActivitiesToRoutines(routines) {
+  try {
+    const { rows: activities } = await client.query(`
+    SELECT *,
+    routine_activities.id AS "routineActivityId"
+    FROM routine_activities
+    JOIN activities
+    ON activities.id = routine_activities."activityId"
+    `);
+
+    return activities;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
 
 async function createActivity({ name, description }) {
   try {
@@ -77,12 +91,27 @@ async function createActivity({ name, description }) {
     throw error;
   }
 }
-// return the new activity
 
 async function updateActivity({ id, ...fields }) {
   const { name, description } = fields;
 
   try {
+    if (name && description) {
+      const {
+        rows: [activity],
+      } = await client.query(
+        `
+        UPDATE activities
+        SET name = $1, description = $2
+        WHERE id = $3
+        RETURNING *;
+      `,
+        [name, description, id]
+      );
+
+      return activity;
+    }
+
     if (name) {
       const {
         rows: [activity],
@@ -119,15 +148,12 @@ async function updateActivity({ id, ...fields }) {
     throw error;
   }
 }
-// don't try to update the id
-// do update the name and description
-// return the updated activity
 
 module.exports = {
   getAllActivities,
   getActivityById,
   getActivityByName,
-  // attachActivitiesToRoutines,
+  attachActivitiesToRoutines,
   createActivity,
   updateActivity,
 };
