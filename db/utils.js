@@ -14,6 +14,4 @@ async function filterActivities(routines) {
   return routines;
 }
 
-module.exports = {
-  filterActivities,
-};
+module.exports = { filterActivities };

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
+const { requireLogin } = require('./utils');
 const {
   getAllRoutines,
   createRoutine,
@@ -10,7 +11,6 @@ const {
   addActivityToRoutine,
   getRoutineActivitiesByRoutine,
 } = require('../db');
-const { requireLogin } = require('./utils');
 
 // GET /api/routines
 router.get('/', async (req, res, next) => {
@@ -22,6 +22,7 @@ router.get('/', async (req, res, next) => {
     next({ name, message });
   }
 });
+
 // POST /api/routines
 router.post('/', requireLogin, async (req, res, next) => {
   try {
@@ -34,6 +35,7 @@ router.post('/', requireLogin, async (req, res, next) => {
     next({ name, message });
   }
 });
+
 // PATCH /api/routines/:routineId
 router.patch('/:routineId', requireLogin, async (req, res, next) => {
   try {
@@ -47,6 +49,7 @@ router.patch('/:routineId', requireLogin, async (req, res, next) => {
 
     if (originalRoutine.creatorId === id) {
       const routine = await updateRoutine(newRoutine);
+
       res.send(routine);
     } else {
       res.status(403).send({
@@ -59,6 +62,7 @@ router.patch('/:routineId', requireLogin, async (req, res, next) => {
     next({ name, message });
   }
 });
+
 // DELETE /api/routines/:routineId
 router.delete('/:routineId', requireLogin, async (req, res, next) => {
   try {
@@ -112,4 +116,5 @@ router.post('/:routineId/activities', requireLogin, async (req, res, next) => {
     next({ name, message });
   }
 });
+
 module.exports = router;

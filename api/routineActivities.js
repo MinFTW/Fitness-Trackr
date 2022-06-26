@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
 
+const { requireLogin } = require('./utils');
 const {
   getRoutineActivityById,
   getRoutineById,
   updateRoutineActivity,
   destroyRoutineActivity,
 } = require('../db');
-const { requireLogin } = require('./utils');
 
 // PATCH /api/routine_activities/:routineActivityId
 router.patch('/:routineActivityId', requireLogin, async (req, res, next) => {
@@ -22,6 +22,7 @@ router.patch('/:routineActivityId', requireLogin, async (req, res, next) => {
 
     if (creatorId === id) {
       const routineActivity = await updateRoutineActivity(fields);
+
       res.send(routineActivity);
     } else {
       res.send({
@@ -34,6 +35,7 @@ router.patch('/:routineActivityId', requireLogin, async (req, res, next) => {
     next({ name, message });
   }
 });
+
 // DELETE /api/routine_activities/:routineActivityId
 router.delete('/:routineActivityId', requireLogin, async (req, res, next) => {
   const { routineActivityId } = req.params;
@@ -45,6 +47,7 @@ router.delete('/:routineActivityId', requireLogin, async (req, res, next) => {
 
     if (creatorId === id) {
       const routineActivity = await destroyRoutineActivity(routineActivityId);
+
       res.send(routineActivity);
     } else {
       res.status(403).send({

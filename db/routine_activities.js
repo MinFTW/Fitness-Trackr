@@ -4,7 +4,7 @@ const { getRoutineById } = require('./routines');
 async function getRoutineActivityById(id) {
   try {
     const {
-      rows: [routine_activity],
+      rows: [routineActivity],
     } = await client.query(
       `
       SELECT *
@@ -14,7 +14,7 @@ async function getRoutineActivityById(id) {
       [id]
     );
 
-    return routine_activity;
+    return routineActivity;
   } catch (error) {
     console.log(error);
     throw error;
@@ -29,7 +29,7 @@ async function addActivityToRoutine({
 }) {
   try {
     const {
-      rows: [routine_activity],
+      rows: [routineActivity],
     } = await client.query(
       `
       INSERT INTO routine_activities("routineId", "activityId", count, duration)
@@ -39,7 +39,7 @@ async function addActivityToRoutine({
       [routineId, activityId, count, duration]
     );
 
-    return routine_activity;
+    return routineActivity;
   } catch (error) {
     console.log(error);
     throw error;
@@ -69,7 +69,7 @@ async function updateRoutineActivity({ id, ...fields }) {
     const { count, duration } = fields;
 
     const {
-      rows: [routine_activity],
+      rows: [routineActivity],
     } = await client.query(
       `
       UPDATE routine_activities
@@ -80,7 +80,7 @@ async function updateRoutineActivity({ id, ...fields }) {
       [count, duration, id]
     );
 
-    return routine_activity;
+    return routineActivity;
   } catch (error) {
     console.log(error);
     throw error;
@@ -90,7 +90,7 @@ async function updateRoutineActivity({ id, ...fields }) {
 async function destroyRoutineActivity(id) {
   try {
     const {
-      rows: [routine_activity],
+      rows: [routineActivity],
     } = await client.query(
       `
       DELETE FROM routine_activities
@@ -100,7 +100,7 @@ async function destroyRoutineActivity(id) {
       [id]
     );
 
-    return routine_activity;
+    return routineActivity;
   } catch (error) {
     console.log(error);
     throw error;

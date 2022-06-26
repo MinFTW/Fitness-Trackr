@@ -38,20 +38,16 @@ router.get('/health', (req, res) => {
 });
 
 // ROUTER: /api/users
-const usersRouter = require('./users');
-router.use('/users', usersRouter);
+router.use('/users', require('./users'));
 
 // ROUTER: /api/activities
-const activitiesRouter = require('./activities');
-router.use('/activities', activitiesRouter);
+router.use('/activities', require('./activities'));
 
 // ROUTER: /api/routines
-const routinesRouter = require('./routines');
-router.use('/routines', routinesRouter);
+router.use('/routines', require('./routines'));
 
 // ROUTER: /api/routine_activities
-const routineActivitiesRouter = require('./routineActivities');
-router.use('/routine_activities', routineActivitiesRouter);
+router.use('/routine_activities', require('./routineActivities'));
 
 router.use('*', (req, res) => {
   res.status(404).send({ message: 'Page not found' });

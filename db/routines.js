@@ -63,6 +63,7 @@ async function getAllRoutinesByUser({ username }) {
     `,
       [username]
     );
+
     const result = await filterActivities(routines);
 
     return result;

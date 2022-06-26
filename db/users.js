@@ -17,6 +17,7 @@ async function createUser({ username, password }) {
     `,
       [username, hashedPassword]
     );
+
     if (user) delete user.password;
 
     return user;

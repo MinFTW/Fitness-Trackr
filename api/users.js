@@ -3,13 +3,13 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
+const { requireLogin } = require('./utils');
 const {
   getUserByUsername,
   createUser,
   getUserById,
   getPublicRoutinesByUser,
 } = require('../db');
-const { requireLogin } = require('./utils');
 
 // POST /api/users/login
 router.post('/login', async (req, res, next) => {
