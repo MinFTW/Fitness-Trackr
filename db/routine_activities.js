@@ -1,4 +1,5 @@
 const client = require('./client');
+const { getRoutineById } = require('./routines');
 
 async function getRoutineActivityById(id) {
   try {
@@ -64,9 +65,9 @@ async function getRoutineActivitiesByRoutine({ id }) {
 }
 
 async function updateRoutineActivity({ id, ...fields }) {
-  const { count, duration } = fields;
-
   try {
+    const { count, duration } = fields;
+
     const {
       rows: [routine_activity],
     } = await client.query(
@@ -108,30 +109,14 @@ async function destroyRoutineActivity(id) {
 
 async function canEditRoutineActivity(routineActivityId, userId) {
   try {
-    const {
-      rows: [routine_activity],
-    } = await client.query(
-      `
-      SELECT *
-      FROM routine_activities
-      WHERE id = $1
-    `,
-      [routineActivityId]
-    );
+    const { routineId } = await getRoutineActivityById(routineActivityId);
+    const { creatorId } = await getRoutineById(routineId);
 
-    const {
-      rows: [creator],
-    } = await client.query(
-      `
-      SELECT *
-      FROM routines
-      WHERE "creatorId" = $1
-    `,
-      [userId]
-    );
-
-  if (routine_activity && creator) return true;
-
+    if (creatorId === userId) {
+      return true;
+    } else {
+      return false;
+    }
   } catch (error) {
     console.log(error);
     throw error;

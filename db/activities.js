@@ -93,9 +93,9 @@ async function createActivity({ name, description }) {
 }
 
 async function updateActivity({ id, ...fields }) {
-  const { name, description } = fields;
-
   try {
+    const { name, description } = fields;
+
     if (name && description) {
       const {
         rows: [activity],

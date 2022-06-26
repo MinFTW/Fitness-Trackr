@@ -7,18 +7,19 @@ const {
   getActivityByName,
   getActivityById,
   updateActivity,
+  getPublicRoutinesByActivity,
 } = require('../db');
 
-const { requireUser } = require('./utils');
+const { requireLogin } = require('./utils');
 
 // GET /api/activities/:activityId/routines
 router.get('/:activityId/routines', async (req, res, next) => {
-  const id = req.params.activityId;
-
   try {
-    const routines = await getActivityById(id);
+    const id = req.params.activityId;
+    const activity = { id: id };
+    const routines = await getPublicRoutinesByActivity(activity);
 
-    if (!routines)
+    if (routines.length === 0)
       res.send({
         message: `Activity ${id} not found`,
         name: 'ActivityDoesNotExistError',
@@ -43,22 +44,23 @@ router.get('/', async (req, res, next) => {
 });
 
 // POST /api/activities
-router.post('/', requireUser, async (req, res, next) => {
+router.post('/', requireLogin, async (req, res, next) => {
   const { name, description } = req.body;
 
   try {
     const checkActivity = await getActivityByName(name);
 
-    if (checkActivity)
+    if (checkActivity) {
       res.send({
         message: `An activity with name ${name} already exists`,
         name: 'ActivityAlreadyExistsError',
         error: 'Activity already exists',
       });
+    } else {
+      const activity = await createActivity({ name, description });
 
-    const activity = await createActivity({ name, description });
-
-    res.send(activity);
+      res.send(activity);
+    }
   } catch ({ name, message }) {
     next({ name, message });
   }
@@ -81,16 +83,17 @@ router.patch('/:activityId', async (req, res, next) => {
 
     const checkActivityName = await getActivityByName(name);
 
-    if (checkActivityName)
+    if (checkActivityName) {
       res.send({
         message: `An activity with name ${name} already exists`,
         name: 'ActivityAlreadyExistsError',
         error: 'Activity already exists',
       });
+    } else {
+      const activity = await updateActivity({ id, name, description });
 
-    const activity = await updateActivity({ id, name, description });
-
-    res.send(activity);
+      res.send(activity);
+    }
   } catch ({ name, message }) {
     next({ name, message });
   }
