@@ -7,6 +7,7 @@ const {
   getRoutineById,
   updateRoutineActivity,
   destroyRoutineActivity,
+  canEditRoutineActivity,
 } = require('../db');
 
 // PATCH /api/routine_activities/:routineActivityId
@@ -18,9 +19,10 @@ router.patch('/:routineActivityId', requireLogin, async (req, res, next) => {
     const fields = { id: routineActivityId, count, duration };
 
     const { routineId } = await getRoutineActivityById(routineActivityId);
-    const { creatorId, name } = await getRoutineById(routineId);
+    const { name } = await getRoutineById(routineId);
+    const canEdit = await canEditRoutineActivity(routineActivityId, id);
 
-    if (creatorId === id) {
+    if (canEdit) {
       const routineActivity = await updateRoutineActivity(fields);
 
       res.send(routineActivity);
@@ -43,9 +45,10 @@ router.delete('/:routineActivityId', requireLogin, async (req, res, next) => {
 
   try {
     const { routineId } = await getRoutineActivityById(routineActivityId);
-    const { creatorId, name } = await getRoutineById(routineId);
+    const { name } = await getRoutineById(routineId);
+    const canEdit = await canEditRoutineActivity(routineActivityId, id);
 
-    if (creatorId === id) {
+    if (canEdit) {
       const routineActivity = await destroyRoutineActivity(routineActivityId);
 
       res.send(routineActivity);
