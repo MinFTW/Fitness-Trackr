@@ -26,8 +26,9 @@ router.get('/', async (req, res, next) => {
 // POST /api/routines
 router.post('/', requireLogin, async (req, res, next) => {
   try {
+    const creatorId = req.user.id;
     const { isPublic, name, goal } = req.body;
-    const newRoutine = { creatorId: req.user.id, isPublic, name, goal };
+    const newRoutine = { creatorId, isPublic, name, goal };
     const routine = await createRoutine(newRoutine);
 
     res.send(routine);
