@@ -1,4 +1,4 @@
-const { Pool } = require('pg');
+const { Pool } = require('pg/lib');
 
 const connectionString =
   process.env.DATABASE_URL || 'https://localhost:5432/fitness-dev';
