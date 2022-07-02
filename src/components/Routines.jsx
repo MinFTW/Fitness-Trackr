@@ -1,9 +1,10 @@
 import React from 'react';
+import '../css/Sidebar.css';
 
 const Routines = () => {
   return (
     <div>
-      <h1>Routines</h1>
+      <h2>Routines</h2>
     </div>
   );
 };

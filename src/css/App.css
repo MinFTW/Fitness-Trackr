@@ -7,11 +7,11 @@
   font-family: 'Trispace', sans-serif;
 }
 
-#app {
+/* #app {
   display: flex;
   flex-flow: column wrap;
   width: min(100% - 1rem, 99%);
   margin-inline: auto;
   line-height: 1.6;
   height: 100vh;
-}
+} */
