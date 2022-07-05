@@ -22,8 +22,9 @@
   ],
   "homepage": "https://fitness-tracker-react-app.herokuapp.com/",
   "devDependencies": {
-    "eslint": "^8.2.0",
+    "eslint": "^8.19.0",
     "eslint-plugin-jest": "^25.2.4",
+    "eslint-plugin-react": "^7.30.1",
     "nodemon": "^2.0.4",
     "supertest": "^6.1.6"
   },

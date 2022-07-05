@@ -1,0 +1,28 @@
+#register-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid #cdb4db;
+  border-radius: 16px;
+  margin: 0 auto;
+
+  width: 25vw;
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  margin-top: 2rem;
+}
+
+input {
+  height: 2rem;
+  padding: 1rem;
+  margin: 0.3rem;
+}
+
+.register-button {
+  border-radius: 10px;
+  font-size: 1rem;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  background-color: #d0f4de;
+}

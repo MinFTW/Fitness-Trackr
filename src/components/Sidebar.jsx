@@ -20,6 +20,12 @@ const data = [
     className: 'nav-text',
   },
   {
+    title: 'My Routines',
+    path: '/myroutines',
+    icon: <IoIcons.IoMdFitness />,
+    className: 'nav-text',
+  },
+  {
     title: 'Activities',
     path: '/activities',
     icon: <FaIcons.FaRunning />,
