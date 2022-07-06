@@ -10,6 +10,8 @@ const UserProvider = ({ children }) => {
   useEffect(() => {
     const localStorageToken = localStorage.getItem('token');
     localStorageToken && setToken(localStorageToken);
+    const localStorageUsername = localStorage.getItem('username');
+    localStorageUsername && setUsername(localStorageUsername);
   }, [token]);
 
   return (

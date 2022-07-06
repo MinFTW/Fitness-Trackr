@@ -6,9 +6,9 @@ import {
   Sidebar,
   Routines,
   Activities,
-  Profile,
   Login,
   Signup,
+  MyRoutines,
 } from './index';
 
 const App = () => {
@@ -18,11 +18,10 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/routines' element={<Routines />} />
-        <Route path='/myroutines' element={<Profile />} />
+        <Route path='/myroutines' element={<MyRoutines />} />
         <Route path='/activities' element={<Activities />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Signup />} />
-        <Route path='/profile' element={<Profile />} />
       </Routes>
     </div>
   );

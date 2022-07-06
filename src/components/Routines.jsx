@@ -15,7 +15,7 @@ const Routines = () => {
 
   return (
     <div className='all-routines'>
-      <h2>Routines</h2>
+      <h2>Public Routines</h2>
       {routines.map((routine) => {
         return (
           <div key={routine.id} className='single-routine'>

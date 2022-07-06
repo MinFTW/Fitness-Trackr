@@ -61,19 +61,19 @@ function Sidebar() {
                 </Link>
               </li>
             )}
-            {
+            {!token && (
               <li className='nav-text'>
                 <Link to='/register'>
                   {<AiIcons.AiOutlineUserAdd />}
                   <span>Signup</span>
                 </Link>
               </li>
-            }
+            )}
             {token && (
               <li className='nav-text'>
-                <Link to='/profile'>
+                <Link to='/myroutines'>
                   {<AiIcons.AiOutlineProfile />}
-                  <span>Profile</span>
+                  <span>My Routines</span>
                 </Link>
               </li>
             )}

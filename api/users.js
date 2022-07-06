@@ -8,7 +8,7 @@ const {
   getUserByUsername,
   createUser,
   getUserById,
-  getPublicRoutinesByUser,
+  getAllRoutinesByUser,
 } = require('../db');
 
 // POST /api/users/login
@@ -106,7 +106,7 @@ router.get('/:username/routines', async (req, res, next) => {
   const username = { username: req.params.username };
 
   try {
-    const routines = await getPublicRoutinesByUser(username);
+    const routines = await getAllRoutinesByUser(username);
 
     res.send(routines);
   } catch ({ name, message }) {

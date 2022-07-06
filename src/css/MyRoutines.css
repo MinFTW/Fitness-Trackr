@@ -1,4 +1,4 @@
-.activities-page {
+.routines-page {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -9,14 +9,14 @@ h2 {
   margin-bottom: 2rem;
 }
 
-.all-activities {
+.all-routines {
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
 }
 
-.single-activity {
+.single-routine {
   border: solid #cdb4db;
   border-radius: 12px;
   margin: 0.5rem;
@@ -24,7 +24,7 @@ h2 {
   width: 50%;
 }
 
-#new-activity-form {
+#new-routine-form {
   display: flex;
   justify-content: center;
   border: solid #cdb4db;
@@ -50,7 +50,7 @@ input {
   padding: 0.2rem;
 }
 
-#new-activity-button {
+#new-routine-button {
   border-radius: 10px;
   font-size: 1rem;
   padding: 0.5rem;
@@ -59,10 +59,10 @@ input {
   background-color: #d0f4de;
 }
 
-#new-activity-button:hover {
+#new-routine-button:hover {
   box-shadow: 0 0 5px 0.1rem white;
 }
 
-#new-activity-button:active {
+#new-routine-button:active {
   transform: translateY(0.3vh);
 }
