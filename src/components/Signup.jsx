@@ -17,6 +17,9 @@ const Signup = () => {
       if (result.data === null) return alert('Username already exists');
       setToken(result.data.token);
       localStorage.setItem('token', result.data.token);
+      setUsername('');
+      setPassword('');
+      setConfirmPassword('');
       alert(`${result.data.message}`);
       await loginUser(username, password);
       navigate('/');

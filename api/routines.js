@@ -3,7 +3,7 @@ const router = express.Router();
 
 const { requireLogin } = require('./utils');
 const {
-  getAllRoutines,
+  getAllPublicRoutines,
   createRoutine,
   updateRoutine,
   getRoutineById,
@@ -15,7 +15,7 @@ const {
 // GET /api/routines
 router.get('/', async (req, res, next) => {
   try {
-    const routines = await getAllRoutines();
+    const routines = await getAllPublicRoutines();
 
     res.send(routines);
   } catch ({ name, message }) {

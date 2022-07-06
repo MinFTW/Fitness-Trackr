@@ -1,18 +1,24 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../api';
 import useUser from './hooks/useUser';
 import '../css/Login.css';
 
 const Login = () => {
   const { setToken, username, setUsername, password, setPassword } = useUser();
+  let navigate = useNavigate();
 
   const handleLogin = async () => {
     const result = await loginUser(username, password);
 
-    if (result.data) {
-      setToken(result.data.token);
+    if (result) {
+      setToken(result.token);
       localStorage.setItem('username', username);
-      localStorage.setItem('token', result.data.token);
+      localStorage.setItem('token', result.token);
+      setUsername('');
+      setPassword('');
+      alert(`${result.message}`);
+      navigate('/');
     } else {
       return alert('Username or password incorrect, please try again');
     }
