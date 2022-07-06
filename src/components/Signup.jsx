@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { registerUser, loginUser } from '../api';
-import '../css/Signup.css';
 import useUser from './hooks/useUser';
+import '../css/Signup.css';
 
 const Signup = () => {
   const { setToken, username, setUsername, password, setPassword } = useUser();
   const [confirmPassword, setConfirmPassword] = useState('');
+  let navigate = useNavigate();
 
   const checkPassword = async () => {
     if (password !== confirmPassword) return alert('Passwords do not match');
@@ -17,6 +19,7 @@ const Signup = () => {
       localStorage.setItem('token', result.data.token);
       alert(`${result.data.message}`);
       await loginUser(username, password);
+      navigate('/');
     }
   };
 

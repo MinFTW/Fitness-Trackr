@@ -77,5 +77,7 @@ span {
 }
 
 #source-code {
-  margin-top: 45vh;
+  display: flex;
+  flex-flow: row wrap;
+  margin-top: 40vh;
 }

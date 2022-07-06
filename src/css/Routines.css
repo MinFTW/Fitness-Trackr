@@ -1,1 +1,18 @@
+h2 {
+  margin-bottom: 2rem;
+}
 
+.all-routines {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.single-routine {
+  border: solid #cdb4db;
+  border-radius: 12px;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  width: 50%;
+}

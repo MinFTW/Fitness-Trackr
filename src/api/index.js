@@ -1,4 +1,4 @@
-const BASE_URL = 'https://strangers-things.herokuapp.com/api';
+const BASE_URL = 'https://murmuring-plains-69444.herokuapp.com/api';
 
 // USER ENDPOINTS
 export const registerUser = async (username, password) => {
@@ -9,10 +9,8 @@ export const registerUser = async (username, password) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        user: {
-          username,
-          password,
-        },
+        username,
+        password,
       }),
     });
     const result = await response.json();
@@ -102,10 +100,8 @@ export const createActivity = async (token, name, description) => {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
-        post: {
-          name,
-          description,
-        },
+        name,
+        description,
       }),
     });
     const result = await response.json();
@@ -125,10 +121,8 @@ export const updateActivity = async (token, activityId, name, description) => {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
-        post: {
-          name,
-          description,
-        },
+        name,
+        description,
       }),
     });
     const result = await response.json();
@@ -182,11 +176,9 @@ export const createRoutine = async (token, name, goal, isPublic) => {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
-        post: {
-          name,
-          goal,
-          isPublic,
-        },
+        name,
+        goal,
+        isPublic,
       }),
     });
     const result = await response.json();
@@ -206,11 +198,9 @@ export const updateRoutine = async (token, routineId, name, goal, isPublic) => {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
-        post: {
-          name,
-          goal,
-          isPublic,
-        },
+        name,
+        goal,
+        isPublic,
       }),
     });
     const result = await response.json();
@@ -255,11 +245,9 @@ export const addActivityToRoutine = async (
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
-          post: {
-            activityId,
-            count,
-            duration,
-          },
+          activityId,
+          count,
+          duration,
         }),
       }
     );
@@ -288,10 +276,8 @@ export const updateRoutineActivity = async (
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
-          post: {
-            count,
-            duration,
-          },
+          count,
+          duration,
         }),
       }
     );

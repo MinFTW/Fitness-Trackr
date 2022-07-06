@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import UserContext from '../UserContext';
 
+// eslint-disable-next-line react/prop-types
 const UserProvider = ({ children }) => {
   const [token, setToken] = useState('');
   const [username, setUsername] = useState('');

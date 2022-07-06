@@ -20,12 +20,6 @@ const data = [
     className: 'nav-text',
   },
   {
-    title: 'My Routines',
-    path: '/myroutines',
-    icon: <IoIcons.IoMdFitness />,
-    className: 'nav-text',
-  },
-  {
     title: 'Activities',
     path: '/activities',
     icon: <FaIcons.FaRunning />,
@@ -76,6 +70,14 @@ function Sidebar() {
               );
             })}
             <li className='nav-text' id='source-code'>
+              <a
+                href='https://icons8.com/illustrations/author/cj62pzCRUq1N'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                <IoIcons.IoMdImages />
+                <span>Image Credit</span>
+              </a>
               <a
                 href='https://github.com/MinFTW/Fitness-Trackr'
                 target='_blank'

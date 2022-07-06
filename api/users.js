@@ -66,7 +66,7 @@ router.post('/register', async (req, res, next) => {
     if (_user) {
       res.send({
         message: `User ${username} is already taken.`,
-        name: 'PasswordTooShortError',
+        name: 'UsernameTakenError',
         error: 'Username already exists',
       });
     }
