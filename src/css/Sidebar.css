@@ -6,12 +6,9 @@
   height: 80px;
 }
 
-h1 {
+.app-title {
   color: white;
   margin: 0 auto;
-}
-
-.app-title {
   margin-left: calc(50vw - 200px);
 }
 

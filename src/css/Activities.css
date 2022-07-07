@@ -5,7 +5,8 @@
   align-items: center;
 }
 
-h2 {
+.activities-header {
+  margin-top: 2rem;
   margin-bottom: 2rem;
 }
 
@@ -36,18 +37,13 @@ h2 {
   margin-top: 2rem;
 }
 
-textarea {
+.activities-text-area {
   resize: none;
   display: block;
   margin: 0 auto;
   width: 15rem;
   padding: 0.2rem;
   margin-bottom: 0.5rem;
-}
-
-input {
-  margin: 0.5rem;
-  padding: 0.2rem;
 }
 
 #new-activity-button {

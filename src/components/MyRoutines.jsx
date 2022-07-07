@@ -7,12 +7,17 @@ const MyRoutines = () => {
   const [myRoutines, setMyRoutines] = useState([]);
   const [name, setName] = useState('');
   const [goal, setGoal] = useState('');
+  const [isPublic, setIsPublic] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const { token, username } = useUser();
 
   const fetchUserRoutines = async () => {
     const result = await fetchPublicRoutinesByUser(token, username);
     setMyRoutines(result);
+  };
+
+  const handleCheckbox = () => {
+    isPublic === false ? setIsPublic(true) : setIsPublic(false);
   };
 
   useEffect(() => {
@@ -26,9 +31,10 @@ const MyRoutines = () => {
         {myRoutines ? (
           myRoutines.map((myRoutine) => {
             return (
-              <div key={myRoutine.id} className='single-routine'>
+              <div key={myRoutine.id} className='my-routine'>
                 <h3>{myRoutine.name}</h3>
-                <p>Description: {myRoutine.goal}</p>
+                <h4>Description: {myRoutine.goal}</h4>
+                <p>Public: {myRoutine.isPublic ? 'yes' : 'no'}</p>
               </div>
             );
           })
@@ -38,13 +44,13 @@ const MyRoutines = () => {
       </div>
 
       {token && (
-        <div className='create-routine'>
+        <div>
           <fieldset id='new-routine-form'>
             <legend>New Routine</legend>
             <form
               onSubmit={async (event) => {
                 event.preventDefault();
-                const result = await createRoutine(token, name, goal);
+                const result = await createRoutine(token, name, goal, isPublic);
                 if (result.message) return alert(result.message);
                 setName('');
                 setGoal('');
@@ -54,6 +60,7 @@ const MyRoutines = () => {
             >
               <div>
                 <textarea
+                  className='my-routines-textarea'
                   type='text'
                   placeholder='Add name'
                   maxLength='50'
@@ -66,6 +73,7 @@ const MyRoutines = () => {
 
               <div>
                 <textarea
+                  className='my-routines-textarea'
                   type='text'
                   placeholder='Add goal'
                   maxLength='200'
@@ -75,6 +83,22 @@ const MyRoutines = () => {
                   value={goal}
                   onChange={(event) => setGoal(event.target.value)}
                 ></textarea>
+              </div>
+
+              <div>
+                <fieldset id='new-routine-public'>
+                  <legend>Set Public?</legend>
+                  <label htmlFor='yes'>Yes</label>
+                  <input
+                    className='my-routines-input'
+                    type='checkbox'
+                    name='yes'
+                    value={isPublic}
+                    onChange={(event) => {
+                      handleCheckbox(event);
+                    }}
+                  ></input>
+                </fieldset>
               </div>
 
               <button id='new-routine-button' type='submit'>

@@ -28,7 +28,7 @@ const Signup = () => {
 
   return (
     <div id='register-page'>
-      <h2>Signup for a free account</h2>
+      <h2 className='signup-header'>Signup for a free account</h2>
       <fieldset id='register-form'>
         <legend>Create New Account</legend>
         <form
@@ -40,6 +40,7 @@ const Signup = () => {
           <label htmlFor='username'>Username</label>
           <div>
             <input
+              className='signup-input'
               type='text'
               name='username'
               placeholder='6 to 20 characters'
@@ -58,6 +59,7 @@ const Signup = () => {
               <label htmlFor='password'>Password</label>
             </div>
             <input
+              className='signup-input'
               type='password'
               name='password'
               placeholder='6 to 20 characters'
@@ -76,6 +78,7 @@ const Signup = () => {
               <label htmlFor='confirmPassword'>Re-enter password</label>
             </div>
             <input
+              className='signup-input'
               type='password'
               name='confirmPassword'
               minLength='6'

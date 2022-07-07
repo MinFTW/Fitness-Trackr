@@ -21,7 +21,7 @@ const Activities = () => {
   return (
     <div className='activities-page'>
       <div className='all-activities'>
-        <h2>Activities</h2>
+        <h2 className='activities-header'>Public Activities</h2>
         {activities.map((activity) => {
           return (
             <div key={activity.id} className='single-activity'>
@@ -49,6 +49,7 @@ const Activities = () => {
             >
               <div>
                 <textarea
+                  className='activities-text-area'
                   type='text'
                   placeholder='Add a name'
                   maxLength='50'
@@ -61,6 +62,7 @@ const Activities = () => {
 
               <div>
                 <textarea
+                  className='activities-text-area'
                   type='text'
                   placeholder='Add description'
                   maxLength='200'

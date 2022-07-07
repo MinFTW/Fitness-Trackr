@@ -26,7 +26,7 @@ const Login = () => {
 
   return (
     <div id='login-page'>
-      <h2>Sign in to your account</h2>
+      <h2 className='login-header'>Sign in to your account</h2>
       <fieldset id='login-form'>
         <legend>Login</legend>
         <form
@@ -38,6 +38,7 @@ const Login = () => {
           <label>Username</label>
           <div>
             <input
+              className='login-input'
               type='text'
               minLength='6'
               maxLength='20'
@@ -52,6 +53,7 @@ const Login = () => {
           <label>Password</label>
           <div>
             <input
+              className='login-input'
               type='password'
               minLength='6'
               maxLength='20'

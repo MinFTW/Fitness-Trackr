@@ -1,3 +1,9 @@
+.signup-header {
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
 #register-form {
   display: flex;
   justify-content: center;
@@ -12,7 +18,7 @@
   margin-top: 2rem;
 }
 
-input {
+.signup-input {
   height: 2rem;
   padding: 1rem;
   margin: 0.3rem;
@@ -25,4 +31,8 @@ input {
   margin-top: 1rem;
   margin-bottom: 0.5rem;
   background-color: #d0f4de;
+}
+
+.register-button:hover {
+  box-shadow: 0 0 5px 0.1rem #d0f4de;
 }
