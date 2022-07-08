@@ -4,7 +4,7 @@ import elliptical from '../images/elliptical.png';
 
 const Home = () => {
   return (
-    <div className='homepage'>
+    <div>
       <img src={elliptical} alt='elliptical' className='home-image' />
       <h2 className='home-message'>Are you ready to get fit?</h2>
       <h2 className='home-message'>

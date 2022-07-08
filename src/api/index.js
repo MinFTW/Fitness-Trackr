@@ -189,7 +189,7 @@ export const createRoutine = async (token, name, goal, isPublic) => {
 
 export const updateRoutine = async (token, routineId, name, goal, isPublic) => {
   try {
-    const response = await fetch(`${BASE_URL}/routine/${routineId}`, {
+    const response = await fetch(`${BASE_URL}/routines/${routineId}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',

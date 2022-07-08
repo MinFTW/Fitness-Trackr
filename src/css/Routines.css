@@ -19,11 +19,34 @@
   border-radius: 12px;
   margin: 0.5rem;
   padding: 0.5rem;
-  width: 50%;
+  width: 25%;
 }
 
-.activity-header {
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
+.detailed-routine {
+  border: solid #cdb4db;
+  border-radius: 12px;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  width: 50%;
+}
+.detailed-routine-activities {
+  margin-top: 1rem;
   text-decoration: underline;
+}
+
+.single-routine:hover {
+  box-shadow: 0 0 5px 0.1rem #cdb4db;
+}
+
+.detailed-routine-back-button {
+  border-radius: 10px;
+  font-size: 1rem;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  background-color: #d0f4de;
+}
+
+.detailed-routine-back-button:hover {
+  box-shadow: 0 0 5px 0.1rem #d0f4de;
 }

@@ -35,6 +35,7 @@
   padding: 1rem;
   font-size: 1.2rem;
   margin-top: 5rem;
+  border-radius: 5px;
 }
 
 .my-routines-textarea {
@@ -90,7 +91,7 @@
 }
 
 .myroutines-update-button:hover {
-  box-shadow: 0 0 5px 0.1rem #d0f4de;
+  box-shadow: 0 0 5px 0.1rem #cdb4db;
 }
 
 .myroutines-delete-button {
@@ -99,10 +100,10 @@
   padding: 0.5rem;
   margin-top: 1rem;
   margin-bottom: 0.5rem;
-  background-color: crimson;
+  background-color: #d64933;
   color: white;
 }
 
 .myroutines-delete-button:hover {
-  box-shadow: 0 0 5px 0.1rem crimson;
+  box-shadow: 0 0 5px 0.1rem #d64933;
 }

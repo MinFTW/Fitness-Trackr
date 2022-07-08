@@ -5,6 +5,7 @@ import {
   fetchPublicRoutinesByUser,
   createRoutine,
   deleteRoutine,
+  updateRoutine,
 } from '../api/index';
 
 const MyRoutines = () => {
@@ -13,7 +14,8 @@ const MyRoutines = () => {
   const [goal, setGoal] = useState('');
   const [isPublic, setIsPublic] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [updateRoutine, setUpdateRoutine] = useState(false);
+  const [updateForm, setUpdateForm] = useState(false);
+  const [routineToUpdate, setRoutineToUpdate] = useState('');
   const { token, username } = useUser();
 
   const fetchUserRoutines = async () => {
@@ -34,10 +36,6 @@ const MyRoutines = () => {
     setSubmitted(!submitted);
   };
 
-  const handleUpdateRoutine = async () => {
-    console.log(updateRoutine);
-  };
-
   useEffect(() => {
     fetchUserRoutines();
   }, [submitted]);
@@ -51,13 +49,13 @@ const MyRoutines = () => {
             return (
               <div key={myRoutine.id} className='my-routine'>
                 <h3>Name: {myRoutine.name}</h3>
-                <h4>Goal: {myRoutine.goal}</h4>
+                <p>Goal: {myRoutine.goal}</p>
                 <p>Public: {myRoutine.isPublic ? 'yes' : 'no'}</p>
                 <button
                   className='myroutines-update-button'
                   onClick={() => {
-                    handleUpdateRoutine();
-                    setUpdateRoutine(!updateRoutine);
+                    setRoutineToUpdate(myRoutine.id);
+                    setUpdateForm(!updateForm);
                   }}
                 >
                   Edit
@@ -77,8 +75,7 @@ const MyRoutines = () => {
           <p>No routines</p>
         )}
       </div>
-
-      {token && (
+      {!updateForm && (
         <div>
           <fieldset id='new-routine-form'>
             <legend>New Routine</legend>
@@ -138,6 +135,78 @@ const MyRoutines = () => {
 
               <button id='new-routine-button' type='submit'>
                 Create Routine
+              </button>
+            </form>
+          </fieldset>
+        </div>
+      )}
+
+      {updateForm && (
+        <div>
+          <fieldset id='new-routine-form'>
+            <legend>Update Routine</legend>
+            <form
+              onSubmit={async (event) => {
+                event.preventDefault();
+                const result = await updateRoutine(
+                  token,
+                  routineToUpdate,
+                  name,
+                  goal,
+                  isPublic
+                );
+                if (result.message) return alert(result.message);
+                setName('');
+                setGoal('');
+                setSubmitted(!submitted);
+                alert('Routine updated successfully');
+              }}
+            >
+              <div>
+                <textarea
+                  className='my-routines-textarea'
+                  type='text'
+                  placeholder='Add name'
+                  maxLength='50'
+                  rows='1'
+                  required
+                  value={name}
+                  onChange={(event) => setName(event.target.value)}
+                ></textarea>
+              </div>
+
+              <div>
+                <textarea
+                  className='my-routines-textarea'
+                  type='text'
+                  placeholder='Add goal'
+                  maxLength='200'
+                  rows='3'
+                  cols='15'
+                  required
+                  value={goal}
+                  onChange={(event) => setGoal(event.target.value)}
+                ></textarea>
+              </div>
+
+              <div>
+                <fieldset id='new-routine-public'>
+                  <legend>Set Public?</legend>
+                  <label htmlFor='yes'>Yes</label>
+                  <input
+                    className='my-routines-input'
+                    type='checkbox'
+                    name='yes'
+                    value={isPublic}
+                    onChange={(event) => {
+                      handleCheckbox(event);
+                    }}
+                  ></input>
+                </fieldset>
+              </div>
+
+              <button id='new-routine-button' type='submit'>
+                Update Routine
               </button>
             </form>
           </fieldset>
