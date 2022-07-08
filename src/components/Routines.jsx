@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { fetchAllPublicRoutines } from '../api/index';
+import { RoutinesDetailed } from './index';
 import '../css/Routines.css';
 
 const Routines = () => {
@@ -37,34 +38,11 @@ const Routines = () => {
         })}
 
       {detailedRoutine && (
-        <div className='detailed-routine'>
-          <h3 className='routine-name'>{routineToDisplay.name}</h3>
-          <p>Goal: {routineToDisplay.goal}</p>
-          <p>Created By: {routineToDisplay.creatorName}</p>
-
-          <h3 className='detailed-routine-activities'>Activities</h3>
-          {routineToDisplay.activities.map((activity) => {
-            return (
-              <div key={activity.id}>
-                <p>Name: {activity.name}</p>
-                <p>Description: {activity.description}</p>
-                <p>Count: {activity.count}</p>
-                <p>Duration: {activity.duration}</p>
-                <br></br>
-              </div>
-            );
-          })}
-        </div>
-      )}
-      {detailedRoutine && (
-        <button
-          className='detailed-routine-back-button'
-          onClick={() => {
-            setDetailedRoutine(!detailedRoutine);
-          }}
-        >
-          Back
-        </button>
+        <RoutinesDetailed
+          routineToDisplay={routineToDisplay}
+          detailedRoutine={detailedRoutine}
+          setDetailedRoutine={setDetailedRoutine}
+        />
       )}
     </div>
   );

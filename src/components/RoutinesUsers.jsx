@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import useUser from './hooks/useUser';
-import '../css/MyRoutines.css';
+import '../css/RoutinesUsers.css';
+import { RoutinesUpdate } from './index';
 import {
   fetchPublicRoutinesByUser,
   createRoutine,
   deleteRoutine,
-  updateRoutine,
 } from '../api/index';
 
 const MyRoutines = () => {
@@ -44,7 +44,8 @@ const MyRoutines = () => {
     <div className='my-routines-page'>
       <div className='my-routines'>
         <h2 className='my-routines-header'>My Routines</h2>
-        {myRoutines.length !== 0 ? (
+        {myRoutines.length === 0 && <p>No routines</p>}
+        {myRoutines.length !== 0 &&
           myRoutines.map((myRoutine) => {
             return (
               <div key={myRoutine.id} className='my-routine'>
@@ -70,11 +71,9 @@ const MyRoutines = () => {
                 </button>
               </div>
             );
-          })
-        ) : (
-          <p>No routines</p>
-        )}
+          })}
       </div>
+
       {!updateForm && (
         <div>
           <fieldset id='new-routine-form'>
@@ -142,75 +141,10 @@ const MyRoutines = () => {
       )}
 
       {updateForm && (
-        <div>
-          <fieldset id='new-routine-form'>
-            <legend>Update Routine</legend>
-            <form
-              onSubmit={async (event) => {
-                event.preventDefault();
-                const result = await updateRoutine(
-                  token,
-                  routineToUpdate,
-                  name,
-                  goal,
-                  isPublic
-                );
-                if (result.message) return alert(result.message);
-                setName('');
-                setGoal('');
-                setSubmitted(!submitted);
-                alert('Routine updated successfully');
-              }}
-            >
-              <div>
-                <textarea
-                  className='my-routines-textarea'
-                  type='text'
-                  placeholder='Add name'
-                  maxLength='50'
-                  rows='1'
-                  required
-                  value={name}
-                  onChange={(event) => setName(event.target.value)}
-                ></textarea>
-              </div>
-
-              <div>
-                <textarea
-                  className='my-routines-textarea'
-                  type='text'
-                  placeholder='Add goal'
-                  maxLength='200'
-                  rows='3'
-                  cols='15'
-                  required
-                  value={goal}
-                  onChange={(event) => setGoal(event.target.value)}
-                ></textarea>
-              </div>
-
-              <div>
-                <fieldset id='new-routine-public'>
-                  <legend>Set Public?</legend>
-                  <label htmlFor='yes'>Yes</label>
-                  <input
-                    className='my-routines-input'
-                    type='checkbox'
-                    name='yes'
-                    value={isPublic}
-                    onChange={(event) => {
-                      handleCheckbox(event);
-                    }}
-                  ></input>
-                </fieldset>
-              </div>
-
-              <button id='new-routine-button' type='submit'>
-                Update Routine
-              </button>
-            </form>
-          </fieldset>
-        </div>
+        <RoutinesUpdate
+          routineToUpdate={routineToUpdate}
+          setMyRoutines={setMyRoutines}
+        />
       )}
     </div>
   );

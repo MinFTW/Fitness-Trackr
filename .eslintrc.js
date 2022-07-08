@@ -14,6 +14,6 @@ module.exports = {
       jsx: true,
     },
   },
-  rules: {},
+  rules: { 'react/prop-types': 0 },
   plugins: ['jest'],
 };
