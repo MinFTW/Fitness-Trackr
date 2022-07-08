@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { fetchPublicRoutinesByUser, createRoutine } from '../api/index';
 import useUser from './hooks/useUser';
 import '../css/MyRoutines.css';
+import {
+  fetchPublicRoutinesByUser,
+  createRoutine,
+  deleteRoutine,
+} from '../api/index';
 
 const MyRoutines = () => {
   const [myRoutines, setMyRoutines] = useState([]);
@@ -9,6 +13,7 @@ const MyRoutines = () => {
   const [goal, setGoal] = useState('');
   const [isPublic, setIsPublic] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [updateRoutine, setUpdateRoutine] = useState(false);
   const { token, username } = useUser();
 
   const fetchUserRoutines = async () => {
@@ -17,7 +22,20 @@ const MyRoutines = () => {
   };
 
   const handleCheckbox = () => {
-    isPublic === false ? setIsPublic(true) : setIsPublic(false);
+    setIsPublic(!isPublic);
+  };
+
+  const handleDeleteRoutine = async (myRoutine) => {
+    const routineId = myRoutine.id;
+    const confirmDelete = confirm('Delete Routine?');
+    if (confirmDelete) {
+      await deleteRoutine(token, routineId);
+    }
+    setSubmitted(!submitted);
+  };
+
+  const handleUpdateRoutine = async () => {
+    console.log(updateRoutine);
   };
 
   useEffect(() => {
@@ -27,14 +45,31 @@ const MyRoutines = () => {
   return (
     <div className='my-routines-page'>
       <div className='my-routines'>
-        <h2>My Routines</h2>
-        {myRoutines ? (
+        <h2 className='my-routines-header'>My Routines</h2>
+        {myRoutines.length !== 0 ? (
           myRoutines.map((myRoutine) => {
             return (
               <div key={myRoutine.id} className='my-routine'>
-                <h3>{myRoutine.name}</h3>
-                <h4>Description: {myRoutine.goal}</h4>
+                <h3>Name: {myRoutine.name}</h3>
+                <h4>Goal: {myRoutine.goal}</h4>
                 <p>Public: {myRoutine.isPublic ? 'yes' : 'no'}</p>
+                <button
+                  className='myroutines-update-button'
+                  onClick={() => {
+                    handleUpdateRoutine();
+                    setUpdateRoutine(!updateRoutine);
+                  }}
+                >
+                  Edit
+                </button>
+                <button
+                  className='myroutines-delete-button'
+                  onClick={() => {
+                    handleDeleteRoutine(myRoutine);
+                  }}
+                >
+                  Delete
+                </button>
               </div>
             );
           })

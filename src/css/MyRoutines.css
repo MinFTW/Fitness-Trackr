@@ -6,6 +6,10 @@
   column-gap: 15rem;
 }
 
+.my-routines-header {
+  margin-bottom: 2rem;
+}
+
 .my-routines {
   display: flex;
   flex-flow: column wrap;
@@ -18,7 +22,7 @@
   border-radius: 12px;
   margin: 0.5rem;
   padding: 0.5rem;
-  width: 35%;
+  width: 20vw;
 }
 
 #new-routine-form {
@@ -73,4 +77,32 @@
 
 #new-routine-button:active {
   transform: translateY(0.3vh);
+}
+
+.myroutines-update-button {
+  border-radius: 10px;
+  font-size: 1rem;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  margin-right: 1rem;
+  background-color: #d0f4de;
+}
+
+.myroutines-update-button:hover {
+  box-shadow: 0 0 5px 0.1rem #d0f4de;
+}
+
+.myroutines-delete-button {
+  border-radius: 10px;
+  font-size: 1rem;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  background-color: crimson;
+  color: white;
+}
+
+.myroutines-delete-button:hover {
+  box-shadow: 0 0 5px 0.1rem crimson;
 }

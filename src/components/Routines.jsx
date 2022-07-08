@@ -29,17 +29,18 @@ const Routines = () => {
               handleClick(event);
             }}
           >
-            <h3>{routine.name}</h3>
+            <h3 className='routine-name'>{routine.name}</h3>
             <p>Goal: {routine.goal}</p>
             <p>Created By: {routine.creatorName}</p>
+            <h3 className='activity-header'>Activities</h3>
             {routine.activities.map((activity) => {
               return (
                 <div key={activity.id}>
-                  <h3>Activity</h3>
                   <p>Name: {activity.name}</p>
                   <p>Description: {activity.description}</p>
                   <p>Count: {activity.count}</p>
                   <p>Duration: {activity.duration}</p>
+                  <br></br>
                 </div>
               );
             })}
