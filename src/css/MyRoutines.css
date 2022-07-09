@@ -25,6 +25,10 @@
   width: 20vw;
 }
 
+.my-routine:hover {
+  box-shadow: 0 0 5px 0.1rem #cdb4db;
+}
+
 #new-routine-form {
   display: flex;
   justify-content: center;

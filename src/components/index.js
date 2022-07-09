@@ -3,7 +3,7 @@ export { default as Home } from './Home';
 export { default as Sidebar } from './Sidebar';
 export { default as Routines } from './Routines';
 export { default as Activities } from './Activities';
-export { default as MyRoutines } from './RoutinesUsers';
+export { default as MyRoutines } from './MyRoutines';
 export { default as Login } from './Login';
 export { default as Signup } from './Signup';
 export { default as Logout } from './Logout';

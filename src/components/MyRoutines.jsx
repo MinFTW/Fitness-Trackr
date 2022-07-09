@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import useUser from './hooks/useUser';
-import '../css/RoutinesUsers.css';
+import '../css/MyRoutines.css';
 import { RoutinesUpdate } from './index';
-import {
-  fetchPublicRoutinesByUser,
-  createRoutine,
-  deleteRoutine,
-} from '../api/index';
+import { fetchPublicRoutinesByUser, createRoutine } from '../api/index';
 
 const MyRoutines = () => {
   const [myRoutines, setMyRoutines] = useState([]);
@@ -15,7 +11,7 @@ const MyRoutines = () => {
   const [isPublic, setIsPublic] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [updateForm, setUpdateForm] = useState(false);
-  const [routineToUpdate, setRoutineToUpdate] = useState('');
+  const [routineToUpdate, setRoutineToUpdate] = useState([]);
   const { token, username } = useUser();
 
   const fetchUserRoutines = async () => {
@@ -27,15 +23,6 @@ const MyRoutines = () => {
     setIsPublic(!isPublic);
   };
 
-  const handleDeleteRoutine = async (myRoutine) => {
-    const routineId = myRoutine.id;
-    const confirmDelete = confirm('Delete Routine?');
-    if (confirmDelete) {
-      await deleteRoutine(token, routineId);
-    }
-    setSubmitted(!submitted);
-  };
-
   useEffect(() => {
     fetchUserRoutines();
   }, [submitted]);
@@ -43,32 +30,23 @@ const MyRoutines = () => {
   return (
     <div className='my-routines-page'>
       <div className='my-routines'>
-        <h2 className='my-routines-header'>My Routines</h2>
+        {!updateForm && <h2 className='my-routines-header'>My Routines</h2>}
         {myRoutines.length === 0 && <p>No routines</p>}
         {myRoutines.length !== 0 &&
+          !updateForm &&
           myRoutines.map((myRoutine) => {
             return (
-              <div key={myRoutine.id} className='my-routine'>
-                <h3>Name: {myRoutine.name}</h3>
+              <div
+                key={myRoutine.id}
+                className='my-routine'
+                onClick={() => {
+                  setUpdateForm(!updateForm);
+                  setRoutineToUpdate(myRoutine);
+                }}
+              >
+                <h3 className='routine-name'>{myRoutine.name}</h3>
                 <p>Goal: {myRoutine.goal}</p>
                 <p>Public: {myRoutine.isPublic ? 'yes' : 'no'}</p>
-                <button
-                  className='myroutines-update-button'
-                  onClick={() => {
-                    setRoutineToUpdate(myRoutine.id);
-                    setUpdateForm(!updateForm);
-                  }}
-                >
-                  Edit
-                </button>
-                <button
-                  className='myroutines-delete-button'
-                  onClick={() => {
-                    handleDeleteRoutine(myRoutine);
-                  }}
-                >
-                  Delete
-                </button>
               </div>
             );
           })}
@@ -143,7 +121,8 @@ const MyRoutines = () => {
       {updateForm && (
         <RoutinesUpdate
           routineToUpdate={routineToUpdate}
-          setMyRoutines={setMyRoutines}
+          updateForm={updateForm}
+          setUpdateForm={setUpdateForm}
         />
       )}
     </div>
