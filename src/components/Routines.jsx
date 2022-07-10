@@ -1,12 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { fetchAllPublicRoutines } from '../api/index';
 import { RoutinesDetailed } from './index';
+import useRoutines from './hooks/useRoutines';
 import '../css/Routines.css';
 
 const Routines = () => {
-  const [routines, setRoutines] = useState([]);
-  const [detailedRoutine, setDetailedRoutine] = useState(false);
-  const [routineToDisplay, setRoutineToDisplay] = useState([]);
+  const {
+    routines,
+    setRoutines,
+    detailedRoutine,
+    setDetailedRoutine,
+    setRoutineToDisplay,
+  } = useRoutines();
 
   useEffect(() => {
     const getRoutines = async () => {
@@ -17,8 +22,8 @@ const Routines = () => {
   }, []);
 
   return (
-    <div className='all-routines'>
-      <h2 className='routines-header'>Public Routines</h2>
+    <div id='routines-page'>
+      <h2 className='page-header'>Public Routines</h2>
       {!detailedRoutine &&
         routines.map((routine) => {
           return (
@@ -37,13 +42,7 @@ const Routines = () => {
           );
         })}
 
-      {detailedRoutine && (
-        <RoutinesDetailed
-          routineToDisplay={routineToDisplay}
-          detailedRoutine={detailedRoutine}
-          setDetailedRoutine={setDetailedRoutine}
-        />
-      )}
+      {detailedRoutine && <RoutinesDetailed />}
     </div>
   );
 };

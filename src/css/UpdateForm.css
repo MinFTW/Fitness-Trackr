@@ -1,0 +1,43 @@
+#form-group {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+}
+
+#add-activity-form {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+  align-items: center;
+  border: solid #cdb4db;
+  margin: 0 auto;
+
+  width: 20vw;
+  padding: 1rem;
+  font-size: 1.2rem;
+  margin-top: 2rem;
+  margin-left: 2rem;
+  border-radius: 5px;
+}
+
+#select-activities {
+  height: 5rem;
+  font-size: 1rem;
+}
+
+#update-back-button {
+  width: 20vw;
+}
+
+/* remove spinners for numbers field */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
+}

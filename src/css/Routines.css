@@ -1,17 +1,8 @@
-.routines-header {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
-.all-routines {
+#routines-page {
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
-}
-
-.routine-name {
-  text-decoration: underline;
 }
 
 .single-routine {
@@ -24,4 +15,8 @@
 
 .single-routine:hover {
   box-shadow: 0 0 5px 0.1rem #cdb4db;
+}
+
+.routine-name {
+  text-decoration: underline;
 }

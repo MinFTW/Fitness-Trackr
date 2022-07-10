@@ -6,6 +6,7 @@ const UserProvider = ({ children }) => {
   const [token, setToken] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
     const localStorageToken = localStorage.getItem('token');
@@ -16,7 +17,16 @@ const UserProvider = ({ children }) => {
 
   return (
     <UserContext.Provider
-      value={{ token, setToken, username, setUsername, password, setPassword }}
+      value={{
+        token,
+        setToken,
+        username,
+        setUsername,
+        password,
+        setPassword,
+        submitted,
+        setSubmitted,
+      }}
     >
       {children}
     </UserContext.Provider>

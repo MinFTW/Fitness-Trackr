@@ -22,13 +22,12 @@ const Signup = () => {
       setConfirmPassword('');
       alert(`${result.data.message}`);
       await loginUser(username, password);
-      navigate('/');
+      navigate('/myroutines');
     }
   };
 
   return (
-    <div id='register-page'>
-      <h2 className='signup-header'>Signup for a free account</h2>
+    <>
       <fieldset id='register-form'>
         <legend>Create New Account</legend>
         <form
@@ -91,10 +90,10 @@ const Signup = () => {
             ></input>
           </div>
 
-          <button className='register-button'> Sign Up</button>
+          <button className='create-button'> Sign Up</button>
         </form>
       </fieldset>
-    </div>
+    </>
   );
 };
 

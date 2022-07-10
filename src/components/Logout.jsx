@@ -9,7 +9,7 @@ function Logout() {
 
   return (
     <button
-      className='logout-button'
+      id='logout-button'
       onClick={() => {
         setToken('');
         localStorage.removeItem('token');

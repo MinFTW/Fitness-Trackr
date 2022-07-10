@@ -1,4 +1,4 @@
-.logout-button {
+#logout-button {
   background-color: #d64933;
   color: white;
 
@@ -9,10 +9,10 @@
   margin-top: 2rem;
 }
 
-.logout-button:hover {
+#logout-button:hover {
   box-shadow: 0 0 5px 0.1rem white;
 }
 
-.logout-button:active {
+#logout-button:active {
   transform: translateY(0.3vh);
 }

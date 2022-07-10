@@ -13,7 +13,7 @@ import {
 
 const App = () => {
   return (
-    <div id='app'>
+    <>
       <Sidebar />
       <Routes>
         <Route path='/' element={<Home />} />
@@ -23,7 +23,7 @@ const App = () => {
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Signup />} />
       </Routes>
-    </div>
+    </>
   );
 };
 

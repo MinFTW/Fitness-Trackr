@@ -1,14 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { fetchAllActivities, createActivity } from '../api/index';
+import React, { useEffect } from 'react';
+import { createActivity, fetchAllActivities } from '../api/index';
 import useUser from './hooks/useUser';
+import useActivities from './hooks/useActivities';
 import '../css/Activities.css';
 
 const Activities = () => {
-  const [activities, setActivities] = useState([]);
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
-  const [submitted, setSubmitted] = useState(false);
-  const { token } = useUser();
+  const { token, submitted, setSubmitted } = useUser();
+  const {
+    activities,
+    setActivities,
+    name,
+    setName,
+    description,
+    setDescription,
+  } = useActivities();
 
   useEffect(() => {
     const getActivities = async () => {
@@ -19,12 +24,12 @@ const Activities = () => {
   }, [submitted]);
 
   return (
-    <div className='activities-page'>
-      <div className='all-activities'>
-        <h2 className='activities-header'>Public Activities</h2>
+    <div id='activities-page'>
+      <div id='all-activities'>
+        <h2 className='page-header'>Public Activities</h2>
         {activities.map((activity) => {
           return (
-            <div key={activity.id} className='single-activity'>
+            <div key={activity.id} id='single-activity'>
               <h3>{activity.name}</h3>
               <p>Description: {activity.description}</p>
             </div>
@@ -33,8 +38,8 @@ const Activities = () => {
       </div>
 
       {token && (
-        <div className='create-activity'>
-          <fieldset id='new-activity-form'>
+        <div>
+          <fieldset className='create-forms'>
             <legend>New Activity</legend>
             <form
               onSubmit={async (event) => {
@@ -49,7 +54,7 @@ const Activities = () => {
             >
               <div>
                 <textarea
-                  className='activities-text-area'
+                  className='forms-textarea'
                   type='text'
                   placeholder='Add a name'
                   maxLength='50'
@@ -62,7 +67,7 @@ const Activities = () => {
 
               <div>
                 <textarea
-                  className='activities-text-area'
+                  className='forms-textarea'
                   type='text'
                   placeholder='Add description'
                   maxLength='200'
@@ -74,7 +79,7 @@ const Activities = () => {
                 ></textarea>
               </div>
 
-              <button id='new-activity-button' type='submit'>
+              <button className='create-button' type='submit'>
                 Create Activity
               </button>
             </form>

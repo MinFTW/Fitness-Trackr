@@ -1,65 +1,21 @@
-.activities-page {
+#activities-page {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
 }
 
-.activities-header {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-}
-
-.all-activities {
+#all-activities {
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
 }
 
-.single-activity {
+#single-activity {
   border: solid #cdb4db;
   border-radius: 12px;
   margin: 0.5rem;
   padding: 0.5rem;
   width: 50%;
-}
-
-#new-activity-form {
-  display: flex;
-  justify-content: center;
-  border: solid #cdb4db;
-  margin: 0 auto;
-
-  width: 25%;
-  padding: 1rem;
-  font-size: 1.2rem;
-  margin-top: 2rem;
-  border-radius: 5px;
-}
-
-.activities-text-area {
-  resize: none;
-  display: block;
-  margin: 0 auto;
-  width: 15rem;
-  padding: 0.2rem;
-  margin-bottom: 0.5rem;
-}
-
-#new-activity-button {
-  border-radius: 10px;
-  font-size: 1rem;
-  padding: 0.5rem;
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
-  background-color: #d0f4de;
-}
-
-#new-activity-button:hover {
-  box-shadow: 0 0 5px 0.1rem white;
-}
-
-#new-activity-button:active {
-  transform: translateY(0.3vh);
 }

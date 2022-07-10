@@ -1,15 +1,15 @@
+#app-title {
+  color: white;
+  margin: 0 auto;
+  margin-left: calc(50vw - 200px);
+}
+
 .sidebar {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   background-color: #cdb4db;
   height: 80px;
-}
-
-.app-title {
-  color: white;
-  margin: 0 auto;
-  margin-left: calc(50vw - 200px);
 }
 
 .menu-bars {

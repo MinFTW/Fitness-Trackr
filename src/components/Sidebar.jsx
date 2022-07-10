@@ -20,7 +20,7 @@ function Sidebar() {
           <Link to='#' className='menu-bars'>
             <FaIcons.FaBars onClick={toggleSidebar} />
           </Link>
-          <h1 className='app-title'>Fitness Trackr</h1>
+          <h1 id='app-title'>Fitness Trackr</h1>
         </div>
         <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
           <ul className='nav-menu-items'>

@@ -2,8 +2,16 @@ import { useContext } from 'react';
 import UserContext from '../../UserContext';
 
 const useUser = () => {
-  const { token, setToken, username, setUsername, password, setPassword } =
-    useContext(UserContext);
+  const {
+    token,
+    setToken,
+    username,
+    setUsername,
+    password,
+    setPassword,
+    submitted,
+    setSubmitted,
+  } = useContext(UserContext);
 
   return {
     token,
@@ -12,6 +20,8 @@ const useUser = () => {
     setUsername,
     password,
     setPassword,
+    submitted,
+    setSubmitted,
   };
 };
 

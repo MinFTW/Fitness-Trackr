@@ -9,3 +9,4 @@ export { default as Signup } from './Signup';
 export { default as Logout } from './Logout';
 export { default as RoutinesUpdate } from './RoutinesUpdate';
 export { default as RoutinesDetailed } from './RoutinesDetailed';
+export { default as UpdateForm } from './UpdateForm';

@@ -1,18 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import useUser from './hooks/useUser';
-import '../css/MyRoutines.css';
 import { RoutinesUpdate } from './index';
 import { fetchPublicRoutinesByUser, createRoutine } from '../api/index';
+import useUser from './hooks/useUser';
+import useRoutines from './hooks/useRoutines';
+import '../css/MyRoutines.css';
 
 const MyRoutines = () => {
-  const [myRoutines, setMyRoutines] = useState([]);
-  const [name, setName] = useState('');
-  const [goal, setGoal] = useState('');
-  const [isPublic, setIsPublic] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
   const [updateForm, setUpdateForm] = useState(false);
-  const [routineToUpdate, setRoutineToUpdate] = useState([]);
-  const { token, username } = useUser();
+  const { token, username, submitted, setSubmitted } = useUser();
+  const {
+    myRoutines,
+    setMyRoutines,
+    name,
+    setName,
+    goal,
+    setGoal,
+    isPublic,
+    setIsPublic,
+    setRoutineToUpdate,
+  } = useRoutines();
 
   const fetchUserRoutines = async () => {
     const result = await fetchPublicRoutinesByUser(token, username);
@@ -28,9 +34,9 @@ const MyRoutines = () => {
   }, [submitted]);
 
   return (
-    <div className='my-routines-page'>
-      <div className='my-routines'>
-        {!updateForm && <h2 className='my-routines-header'>My Routines</h2>}
+    <div id='my-routines-page'>
+      <div id='my-routines'>
+        {!updateForm && <h2 className='page-header'>My Routines</h2>}
         {myRoutines.length === 0 && <p>No routines</p>}
         {myRoutines.length !== 0 &&
           !updateForm &&
@@ -38,7 +44,7 @@ const MyRoutines = () => {
             return (
               <div
                 key={myRoutine.id}
-                className='my-routine'
+                className='single-routine'
                 onClick={() => {
                   setUpdateForm(!updateForm);
                   setRoutineToUpdate(myRoutine);
@@ -54,7 +60,7 @@ const MyRoutines = () => {
 
       {!updateForm && (
         <div>
-          <fieldset id='new-routine-form'>
+          <fieldset className='create-forms'>
             <legend>New Routine</legend>
             <form
               onSubmit={async (event) => {
@@ -69,7 +75,7 @@ const MyRoutines = () => {
             >
               <div>
                 <textarea
-                  className='my-routines-textarea'
+                  className='forms-textarea'
                   type='text'
                   placeholder='Add name'
                   maxLength='50'
@@ -82,7 +88,7 @@ const MyRoutines = () => {
 
               <div>
                 <textarea
-                  className='my-routines-textarea'
+                  className='forms-textarea'
                   type='text'
                   placeholder='Add goal'
                   maxLength='200'
@@ -95,11 +101,10 @@ const MyRoutines = () => {
               </div>
 
               <div>
-                <fieldset id='new-routine-public'>
+                <fieldset className='new-routine-public'>
                   <legend>Set Public?</legend>
                   <label htmlFor='yes'>Yes</label>
                   <input
-                    className='my-routines-input'
                     type='checkbox'
                     name='yes'
                     value={isPublic}
@@ -110,7 +115,7 @@ const MyRoutines = () => {
                 </fieldset>
               </div>
 
-              <button id='new-routine-button' type='submit'>
+              <button className='create-button' type='submit'>
                 Create Routine
               </button>
             </form>
@@ -119,11 +124,7 @@ const MyRoutines = () => {
       )}
 
       {updateForm && (
-        <RoutinesUpdate
-          routineToUpdate={routineToUpdate}
-          updateForm={updateForm}
-          setUpdateForm={setUpdateForm}
-        />
+        <RoutinesUpdate updateForm={updateForm} setUpdateForm={setUpdateForm} />
       )}
     </div>
   );

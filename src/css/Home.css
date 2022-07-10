@@ -1,13 +1,13 @@
+#home-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .home-message {
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
   margin-top: 2rem;
-}
-
-.home-image {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
 }

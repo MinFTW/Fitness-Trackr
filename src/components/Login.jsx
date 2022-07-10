@@ -18,16 +18,15 @@ const Login = () => {
       setUsername('');
       setPassword('');
       alert(`${result.message}`);
-      navigate('/');
+      navigate('/myroutines');
     } else {
       return alert('Username or password incorrect, please try again');
     }
   };
 
   return (
-    <div id='login-page'>
-      <h2 className='login-header'>Sign in to your account</h2>
-      <fieldset id='login-form'>
+    <>
+      <fieldset className='create-forms'>
         <legend>Login</legend>
         <form
           onSubmit={(event) => {
@@ -65,10 +64,10 @@ const Login = () => {
             ></input>
           </div>
 
-          <button className='login-button'>Login</button>
+          <button className='create-button'>Login</button>
         </form>
       </fieldset>
-    </div>
+    </>
   );
 };
 
