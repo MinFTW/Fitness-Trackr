@@ -18,7 +18,6 @@ function UpdateForms({ updateActivity, activityToUpdate }) {
   const { token, submitted, setSubmitted } = useUser();
   const { routineToUpdate, name, setName, goal, setGoal } = useRoutines();
   const { activities, setActivities } = useActivities();
-  console.log(activities);
 
   const handleCheckbox = () => {
     setIsPublic(!isPublic);
