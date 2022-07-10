@@ -1,29 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import useUser from './hooks/useUser';
 import useRoutines from './hooks/useRoutines';
 import useActivities from './hooks/useActivities';
-import '../css/UpdateForm.css';
 import {
   updateRoutine,
   addActivityToRoutine,
+  updateRoutineActivity,
   fetchAllActivities,
 } from '../api/index';
+import '../css/UpdateForms.css';
 
-function UpdateForm() {
+function UpdateForms({ updateActivity, activityToUpdate }) {
   const [count, setCount] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [isPublic, setIsPublic] = useState(false);
   const [activityToAdd, setActivityToAdd] = useState('');
   const { token, submitted, setSubmitted } = useUser();
+  const { routineToUpdate, name, setName, goal, setGoal } = useRoutines();
   const { activities, setActivities } = useActivities();
-  const {
-    routineToUpdate,
-    name,
-    setName,
-    goal,
-    setGoal,
-    isPublic,
-    setIsPublic,
-  } = useRoutines();
+  console.log(activities);
 
   const handleCheckbox = () => {
     setIsPublic(!isPublic);
@@ -35,7 +30,7 @@ function UpdateForm() {
       setActivities(result);
     };
     getActivities();
-  }, [submitted]);
+  }, []);
 
   return (
     <div id='form-group'>
@@ -100,7 +95,6 @@ function UpdateForm() {
               ></input>
             </fieldset>
           </div>
-
           <button className='create-button' type='submit'>
             Update Routine
           </button>
@@ -115,6 +109,7 @@ function UpdateForm() {
           value={activityToAdd.id}
           onChange={(event) => setActivityToAdd(event.target.value)}
         >
+          <option value='select'>Select Activity</option>
           {activities.map((activity, index) => {
             return (
               <option key={index} value={activity.id}>
@@ -123,7 +118,6 @@ function UpdateForm() {
             );
           })}
         </select>
-
         <form
           onSubmit={async (event) => {
             event.preventDefault();
@@ -164,8 +158,54 @@ function UpdateForm() {
           </button>
         </form>
       </fieldset>
+
+      {updateActivity && (
+        <fieldset id='update-activity-form' className='create-forms'>
+          <legend>Update Activity</legend>
+          <form
+            onSubmit={async (event) => {
+              event.preventDefault();
+              const result = await updateRoutineActivity(
+                token,
+                activityToUpdate,
+                count,
+                duration
+              );
+              if (result.message) return alert(result.message);
+              setCount(0);
+              setDuration(0);
+              setSubmitted(!submitted);
+              alert('Activity updated successfully');
+            }}
+          >
+            <label htmlFor='count'>Count:</label>
+            <input
+              type='number'
+              name='count'
+              value={count}
+              onChange={(event) => {
+                setCount(event.target.value);
+              }}
+            ></input>
+
+            <label htmlFor='duration'>Duration:</label>
+            <input
+              type='number'
+              name='duration'
+              value={duration}
+              onChange={(event) => {
+                setDuration(event.target.value);
+              }}
+            ></input>
+
+            <button className='create-button' type='submit'>
+              Update Activity
+            </button>
+          </form>
+        </fieldset>
+      )}
     </div>
   );
 }
 
-export default UpdateForm;
+export default UpdateForms;

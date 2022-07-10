@@ -29,6 +29,13 @@
   width: 20vw;
 }
 
+#update-activity-form {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
 /* remove spinners for numbers field */
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,

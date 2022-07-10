@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { RoutinesUpdate } from './index';
-import { fetchPublicRoutinesByUser, createRoutine } from '../api/index';
+import { MyRoutinesUpdate } from './index';
 import useUser from './hooks/useUser';
 import useRoutines from './hooks/useRoutines';
 import '../css/MyRoutines.css';
+import {
+  fetchPublicRoutinesByUser,
+  createRoutine,
+  deleteRoutine,
+} from '../api/index';
 
 const MyRoutines = () => {
   const [updateForm, setUpdateForm] = useState(false);
@@ -38,21 +42,37 @@ const MyRoutines = () => {
       <div id='my-routines'>
         {!updateForm && <h2 className='page-header'>My Routines</h2>}
         {myRoutines.length === 0 && <p>No routines</p>}
+
         {myRoutines.length !== 0 &&
           !updateForm &&
           myRoutines.map((myRoutine) => {
             return (
-              <div
-                key={myRoutine.id}
-                className='single-routine'
-                onClick={() => {
-                  setUpdateForm(!updateForm);
-                  setRoutineToUpdate(myRoutine);
-                }}
-              >
+              <div key={myRoutine.id} id='my-routine'>
                 <h3 className='routine-name'>{myRoutine.name}</h3>
                 <p>Goal: {myRoutine.goal}</p>
                 <p>Public: {myRoutine.isPublic ? 'yes' : 'no'}</p>
+                <button
+                  id='update-button'
+                  className='create-button'
+                  onClick={() => {
+                    setUpdateForm(!updateForm);
+                    setRoutineToUpdate(myRoutine);
+                  }}
+                >
+                  Update
+                </button>
+                <button
+                  className='delete-button'
+                  onClick={async () => {
+                    const confirmDelete = confirm('Delete Routine?');
+                    if (confirmDelete) {
+                      await deleteRoutine(token, myRoutine.id);
+                    }
+                    setSubmitted(!submitted);
+                  }}
+                >
+                  Delete
+                </button>
               </div>
             );
           })}
@@ -124,7 +144,10 @@ const MyRoutines = () => {
       )}
 
       {updateForm && (
-        <RoutinesUpdate updateForm={updateForm} setUpdateForm={setUpdateForm} />
+        <MyRoutinesUpdate
+          updateForm={updateForm}
+          setUpdateForm={setUpdateForm}
+        />
       )}
     </div>
   );

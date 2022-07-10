@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import '../css/Logout.css';
 
 function Logout() {
-  const { setToken } = useUser();
+  const { setToken, setUsername } = useUser();
   let navigate = useNavigate();
 
   return (
@@ -12,6 +12,7 @@ function Logout() {
       id='logout-button'
       onClick={() => {
         setToken('');
+        setUsername('');
         localStorage.removeItem('token');
         localStorage.removeItem('username');
         navigate('/');

@@ -290,7 +290,7 @@ export const updateRoutineActivity = async (
 export const deleteRoutineActivity = async (token, routineActivityId) => {
   try {
     const response = await fetch(
-      `${BASE_URL}/routines_activities/${routineActivityId}`,
+      `${BASE_URL}/routine_activities/${routineActivityId}`,
       {
         method: 'DELETE',
         headers: {

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { createActivity, fetchAllActivities } from '../api/index';
 import useUser from './hooks/useUser';
 import useActivities from './hooks/useActivities';
+import { createActivity, fetchAllActivities } from '../api/index';
 import '../css/Activities.css';
 
 const Activities = () => {
