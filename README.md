@@ -12,5 +12,8 @@
 
 # LIVE DEMO
 
-App: https://murmuring-plains-69444.herokuapp.com
-API: https://murmuring-plains-69444.herokuapp.com/api/routines
+https://murmuring-plains-69444.herokuapp.com
+
+# API
+
+https://murmuring-plains-69444.herokuapp.com/api/routines
