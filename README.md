@@ -1,4 +1,4 @@
-# TECH STACK
+## TECH STACK
 
 - react
 - node
